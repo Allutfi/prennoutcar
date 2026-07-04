@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prenn Out Car
 
-## Getting Started
+Website dealer kendaraan mewah premium berbasis Next.js untuk **Prenn Out Car** — koleksi eksklusif kendaraan pre-owned terpilih di Miami.
 
-First, run the development server:
+## Tentang Proyek
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Prenn Out Car adalah platform web showroom otomotif mewah yang menawarkan pengalaman pembelian kendaraan kelas atas secara digital. Website ini menampilkan inventaris kendaraan premium, layanan pembiayaan, serta perawatan kendaraan berstandar tinggi.
+
+## Fitur Utama
+
+- **Halaman Beranda** — Hero section dengan parallax scroll, inventaris unggulan, value banner, promo bento grid, dan brand carousel
+- **Inventaris** — Daftar kendaraan lengkap dengan filter (merek, body style, tipe bahan bakar, kisaran harga), sorting, dan paginasi
+- **Detail Kendaraan** — Halaman detail per kendaraan dengan galeri foto, spesifikasi performa, dan fitur unggulan
+- **Pembiayaan** — Kalkulator cicilan interaktif (vehicle price, down payment, term, APR) dan form aplikasi kredit online
+- **Layanan** — Menu servis lengkap, jadwal appointment online, dan penawaran spesial musiman
+- **Tentang Kami** — Profil perusahaan, nilai-nilai inti, galeri showroom, dan tim kepemimpinan
+
+## Tech Stack
+
+| Teknologi | Versi |
+|---|---|
+| [Next.js](https://nextjs.org) | 16.2.9 |
+| [React](https://react.dev) | 19.2.4 |
+| [Tailwind CSS](https://tailwindcss.com) | v4 |
+| [TypeScript](https://www.typescriptlang.org) | ^5 |
+
+**Font:** Montserrat (heading) + Inter (body) via `next/font/google`  
+**Ikon:** Material Symbols Outlined
+
+## Struktur Proyek
+
+```
+src/
+├── app/
+│   ├── page.tsx              # Beranda
+│   ├── layout.tsx            # Root layout (metadata, font, global CSS)
+│   ├── globals.css           # Global styles
+│   ├── about/page.tsx        # Halaman Tentang Kami
+│   ├── finance/page.tsx      # Halaman Pembiayaan
+│   ├── inventory/
+│   │   ├── page.tsx          # Daftar inventaris + filter sidebar
+│   │   └── [id]/page.tsx     # Detail kendaraan
+│   └── services/page.tsx     # Halaman Layanan & Perawatan
+└── components/
+    ├── Navbar.tsx             # Navigasi utama
+    ├── UtilityBar.tsx         # Bar utilitas atas (kontak, jam operasional)
+    ├── HeroSection.tsx        # Hero dengan parallax (client component)
+    ├── InventorySection.tsx   # Seksi inventaris unggulan di beranda
+    ├── FinanceCalculator.tsx  # Kalkulator cicilan interaktif (client component)
+    ├── BrandCarousel.tsx      # Carousel merek kendaraan
+    ├── PromoSection.tsx       # Bento grid promo
+    ├── ValueBanner.tsx        # Banner nilai/keunggulan
+    ├── RemoteImage.tsx        # Wrapper next/image untuk gambar eksternal
+    └── Footer.tsx             # Footer global
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Memulai
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prasyarat
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js >= 18
+- [pnpm](https://pnpm.io) (package manager yang digunakan proyek ini)
 
-## Learn More
+### Instalasi
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Menjalankan Development Server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+```
 
-## Deploy on Vercel
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Build untuk Produksi
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm build
+pnpm start
+```
+
+### Lint
+
+```bash
+pnpm lint
+```
+
+## Konfigurasi Gambar
+
+Gambar produk dimuat dari CDN Google (`lh3.googleusercontent.com/aida-public/**`). Konfigurasi remote pattern sudah diatur di `next.config.ts`. Gambar eksternal dilayani melalui komponen `RemoteImage` yang membungkus `next/image`.
+
+## Lisensi
+
+Proyek ini bersifat public.

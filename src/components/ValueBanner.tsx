@@ -27,7 +27,10 @@ export default function ValueBanner() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {values.map((item) => (
-            <div key={item.title} className="flex flex-col items-center text-center space-y-4 group">
+            <div
+              key={item.title}
+              className="flex flex-col items-center text-center space-y-4 group"
+            >
               <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#004b93] transition-colors duration-300">
                 <span
                   className="material-symbols-outlined text-3xl"
@@ -38,11 +41,16 @@ export default function ValueBanner() {
               </div>
               <h4
                 className="font-bold text-lg uppercase tracking-wider"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
+                style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
               >
                 {item.title}
               </h4>
-              <p className="text-white/60 text-sm leading-relaxed">{item.desc}</p>
+              <p
+                className="text-white/60 text-sm leading-relaxed"
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>

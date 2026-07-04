@@ -3,7 +3,7 @@ const quickLinks = [
   "Special Offers",
   "Finance Application",
   "Service & Parts",
-  "About Prestige",
+  "About Prenn Out Car",
 ];
 
 const hours = [
@@ -12,11 +12,15 @@ const hours = [
   { day: "Sunday", time: "11:00 AM - 5:00 PM" },
 ];
 
+const socialIcons = ["face_nod", "public", "chat"];
+
+const legalLinks = ["PRIVACY POLICY", "TERMS OF SERVICE", "CAREERS"];
+
 export default function Footer() {
   return (
     <footer className="bg-[#011A35] text-white pt-20">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-20">
-        {/* Brand */}
+        {/* Brand column */}
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <div className="h-10 w-10 bg-white/10 rounded-full flex items-center justify-center text-white font-bold text-xs">
@@ -24,19 +28,23 @@ export default function Footer() {
             </div>
             <span
               className="font-bold text-lg"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
+              style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
             >
-              PRESTIGE
+              PRENN
             </span>
           </div>
-          <p className="text-white/60 text-sm leading-relaxed">
-            Setting the standard for premium pre-owned automotive sales in Miami since 2004.
-            Experience the Prestige difference today.
+          <p
+            className="text-white/60 text-sm leading-relaxed"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
+          >
+            Setting the standard for premium pre-owned automotive sales in Miami
+            since 2004. Experience the Prenn Out Car difference today.
           </p>
           <div className="flex gap-4">
-            {["face_nod", "public", "chat"].map((icon) => (
+            {socialIcons.map((icon) => (
               <button
                 key={icon}
+                aria-label={icon}
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00356a] transition-colors cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[20px]">{icon}</span>
@@ -49,14 +57,18 @@ export default function Footer() {
         <div className="space-y-6">
           <h5
             className="font-bold text-lg uppercase tracking-widest"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
           >
             Quick Links
           </h5>
-          <ul className="space-y-2 text-white/60 text-sm">
+          <ul className="space-y-2">
             {quickLinks.map((link) => (
               <li key={link}>
-                <a href="#" className="hover:text-[#7fbafe] transition-colors">
+                <a
+                  href="#"
+                  className="text-white/60 text-sm hover:text-[#7fbafe] transition-colors"
+                  style={{ fontFamily: "var(--font-inter), sans-serif" }}
+                >
                   {link}
                 </a>
               </li>
@@ -68,41 +80,60 @@ export default function Footer() {
         <div className="space-y-6">
           <h5
             className="font-bold text-lg uppercase tracking-widest"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
           >
             Contact Info
           </h5>
-          <ul className="space-y-4 text-white/60 text-sm">
+          <ul className="space-y-4">
             <li className="flex items-start gap-4">
-              <span className="material-symbols-outlined text-[#7fbafe]">location_on</span>
-              <span>
+              <span className="material-symbols-outlined text-[#7fbafe] shrink-0">
+                location_on
+              </span>
+              <span
+                className="text-white/60 text-sm"
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
                 3450 SW 9th St,
                 <br />
-                Miami, FL 33135
+                Indonesia, Lumajang
               </span>
             </li>
             <li className="flex items-center gap-4">
               <span className="material-symbols-outlined text-[#7fbafe]">call</span>
-              <span>(305) 555-0199</span>
+              <span
+                className="text-white/60 text-sm"
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
+                (62) 812-1873 
+              </span>
             </li>
             <li className="flex items-center gap-4">
               <span className="material-symbols-outlined text-[#7fbafe]">mail</span>
-              <span>sales@prestigeauto.com</span>
+              <span
+                className="text-white/60 text-sm"
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
+                sales@prestigeauto.com
+              </span>
             </li>
           </ul>
         </div>
 
-        {/* Hours */}
+        {/* Business Hours */}
         <div className="space-y-6">
           <h5
             className="font-bold text-lg uppercase tracking-widest"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
           >
             Business Hours
           </h5>
-          <ul className="space-y-2 text-white/60 text-sm">
+          <ul className="space-y-2">
             {hours.map((h) => (
-              <li key={h.day} className="flex justify-between">
+              <li
+                key={h.day}
+                className="flex justify-between text-white/60 text-sm"
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
                 <span>{h.day}</span>
                 <span>{h.time}</span>
               </li>
@@ -114,10 +145,17 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10 py-6">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] tracking-widest text-white/40 uppercase font-semibold">
-          <p>© 2024 PRESTIGE AUTO MOTORS. ALL RIGHTS RESERVED.</p>
+          <p style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+            © 2024 PRENN OUT CAR. ALL RIGHTS RESERVED.
+          </p>
           <div className="flex gap-8">
-            {["PRIVACY POLICY", "TERMS OF SERVICE", "CAREERS"].map((item) => (
-              <a key={item} href="#" className="hover:text-white transition-colors">
+            {legalLinks.map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="hover:text-white transition-colors"
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
                 {item}
               </a>
             ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import RemoteImage from "@/components/RemoteImage";
 
 const inventory = [
   {
@@ -34,7 +35,7 @@ const inventory = [
     model: "F-150 XLT",
     price: "$33,990",
     miles: "38k Mi",
-    badge: { label: "BEST SELLER", color: "bg-[#F59E0B]" },
+    badge: { label: "BEST SELLER", color: "bg-[#F59E0B] text-[#191c20]" },
     category: "trucks",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuA53nYA5kqQ2udctY_rCRLQV2cERUHEa8NQKbr1IBEd6RMgwMODaNfcB0EDsaVQHrJWTikje5BcjsnTHdBIujeMXS89RnZuyZYHnqWSjqjrhiu0Ts1X5tDm8S1wx4rOzf1DNVmdhg8MPhlSUWBAWZKRg6WgKMa_hHw3iB6TUM30tpyoQHWgGOyX6kF0xn6xXxgpaWanXmrBPgOYa_EJ1fMfQALnILSzTVOghBkIsQ_Ei9dmyRt6vNVkcNnguhQS1KZZv1EfDzZoqOE",
@@ -51,7 +52,7 @@ const inventory = [
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCuMCfnP2XOXsep10hgExv3MmIRpYD-2PEge_LoCl5NWv7T_O4gxpkDcQ5eKgqBKEURY-mutwU637WB3Wn1TNTEuOytIHaZ1wkrFvS-Jpw4TWxV9-Da_STiBUDZAatfaSE3OkQmieOSjnOgXoZMa3QXMgJelVn5kQG5Fpc6K2HB7l6Lg4LL5daLrMn8Z9Pipsu8OGjp6IZ2dMUGwlYxWmw1I3nBcuy3dZLxUfzMwxEiI818A8ptfEJq0asQWelg4Qmy_3KVnnVUcgM",
   },
-];
+] as const;
 
 const filterTabs = [
   { label: "ALL", filter: "all" },
@@ -60,36 +61,80 @@ const filterTabs = [
   { label: "TRUCKS", filter: "trucks" },
   { label: "COUPES", filter: "coupes" },
   { label: "HYBRIDS", filter: "hybrids" },
+] as const;
+
+type Filter = (typeof filterTabs)[number]["filter"];
+
+const searchFields = [
+  { label: "MAKE", options: ["All Makes", "Toyota", "Honda", "Ford", "BMW"] },
+  { label: "MODEL", options: ["All Models"] },
+  { label: "BODY STYLE", options: ["All Styles", "Sedan", "SUV", "Truck"] },
+  { label: "MAX PRICE", options: ["Any Price", "$20,000", "$40,000", "$60,000+"] },
 ];
 
 export default function InventorySection() {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState<Filter>("all");
 
   const filtered = inventory.filter(
     (car) => activeFilter === "all" || car.category === activeFilter
   );
 
   return (
-    <section className="mt-20 py-20 px-6 max-w-7xl mx-auto">
-      {/* Header */}
+    <section>
+      {/* Search bar — attached to top of this section, no overlap */}
+      <div className="bg-[#011A35] py-6 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {searchFields.map((field) => (
+              <div key={field.label} className="space-y-1">
+                <label
+                  className="block text-white/60 text-[10px] tracking-widest uppercase font-semibold"
+                  style={{ fontFamily: "var(--font-inter), sans-serif" }}
+                >
+                  {field.label}
+                </label>
+                <select className="w-full bg-white/10 border border-white/20 text-white rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#19619f] focus:outline-none cursor-pointer">
+                  {field.options.map((opt) => (
+                    <option key={opt} className="text-[#191c20] bg-white">
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ))}
+            <div className="flex items-end">
+              <button
+                className="w-full h-[42px] bg-[#004b93] text-white text-[10px] tracking-widest uppercase font-semibold rounded-lg hover:bg-[#00356a] transition-all flex items-center justify-center gap-1"
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
+                <span className="material-symbols-outlined text-[18px]">search</span>
+                SEARCH
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Inventory content */}
+      <div className="max-w-7xl mx-auto px-6 py-20">
+      {/* Section header */}
       <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-8">
         <div className="space-y-2">
           <span
-            className="text-[#19619f] text-[10px] tracking-widest uppercase font-semibold"
-            style={{ fontFamily: "Inter, sans-serif" }}
+            className="block text-[#19619f] text-[10px] tracking-widest uppercase font-semibold"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             PREMIUM COLLECTION
           </span>
           <h2
-            className="text-[#00356a] uppercase font-bold text-4xl"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-[#00356a] uppercase font-bold text-4xl leading-tight"
+            style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
           >
             SHOP OUR INVENTORY
           </h2>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-0 border-b border-[#c2c6d2] pb-0">
+        {/* Filter tabs */}
+        <div className="flex flex-wrap border-b border-[#c2c6d2]">
           {filterTabs.map((tab) => (
             <button
               key={tab.filter}
@@ -99,7 +144,7 @@ export default function InventorySection() {
                   ? "text-[#00356a] border-b-2 border-[#00356a]"
                   : "text-[#5E6E82] hover:text-[#00356a]"
               }`}
-              style={{ fontFamily: "Inter, sans-serif" }}
+              style={{ fontFamily: "var(--font-inter), sans-serif" }}
             >
               {tab.label}
             </button>
@@ -107,7 +152,7 @@ export default function InventorySection() {
         </div>
       </div>
 
-      {/* Grid */}
+      {/* Inventory grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {filtered.map((car) => (
           <CarCard key={car.id} car={car} />
@@ -116,51 +161,63 @@ export default function InventorySection() {
 
       {/* CTA */}
       <div className="mt-8 text-center">
-        <button className="bg-[#00356a] text-white text-[10px] tracking-widest uppercase font-semibold px-12 py-4 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all">
+        <button
+          className="bg-[#00356a] text-white text-[10px] tracking-widest uppercase font-semibold px-12 py-4 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all"
+          style={{ fontFamily: "var(--font-inter), sans-serif" }}
+        >
           EXPLORE FULL INVENTORY
         </button>
       </div>
+      </div> {/* /Inventory content */}
     </section>
   );
 }
 
-function CarCard({ car }: { car: (typeof inventory)[0] }) {
+type Car = (typeof inventory)[number];
+
+function CarCard({ car }: { car: Car }) {
   return (
-    <div className="group bg-white border border-[#E2E8F0] rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300">
-      <div className="relative overflow-hidden aspect-[1.49]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+    <article className="group bg-white border border-[#E2E8F0] rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300">
+      {/* Image */}
+      <div className="relative overflow-hidden aspect-[3/2]">
+        <RemoteImage
           src={car.image}
           alt={`${car.year} ${car.make} ${car.model}`}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
         {car.badge && (
           <div
             className={`absolute top-4 left-4 ${car.badge.color} text-white text-[10px] tracking-widest uppercase font-semibold px-2 py-1 rounded`}
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             {car.badge.label}
           </div>
         )}
       </div>
+
+      {/* Details */}
       <div className="p-6 space-y-4">
         <div>
           <p
             className="text-[#5E6E82] text-[10px] tracking-widest uppercase font-semibold"
-            style={{ fontFamily: "Inter, sans-serif" }}
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             {car.year} {car.make}
           </p>
           <h3
             className="font-bold text-lg text-[#00356a]"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
           >
             {car.model}
           </h3>
         </div>
+
         <div className="flex justify-between items-center border-t border-[#E2E8F0] pt-4">
           <span
             className="font-bold text-2xl text-[#00356a]"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
           >
             {car.price}
           </span>
@@ -169,10 +226,14 @@ function CarCard({ car }: { car: (typeof inventory)[0] }) {
             <span className="text-xs">{car.miles}</span>
           </div>
         </div>
-        <button className="w-full border border-[#00356a] text-[#00356a] text-[10px] tracking-widest uppercase font-semibold py-2 rounded-lg group-hover:bg-[#00356a] group-hover:text-white transition-all">
+
+        <button
+          className="w-full border border-[#00356a] text-[#00356a] text-[10px] tracking-widest uppercase font-semibold py-2 rounded-lg group-hover:bg-[#00356a] group-hover:text-white transition-all"
+          style={{ fontFamily: "var(--font-inter), sans-serif" }}
+        >
           VIEW DETAILS
         </button>
       </div>
-    </div>
+    </article>
   );
 }

@@ -6,7 +6,7 @@ export default function BrandCarousel() {
       <div className="max-w-7xl mx-auto px-6">
         <p
           className="text-center text-[10px] text-[#5E6E82] mb-6 tracking-[.25em] uppercase font-semibold"
-          style={{ fontFamily: "Inter, sans-serif" }}
+          style={{ fontFamily: "var(--font-inter), sans-serif" }}
         >
           BRANDS WE CARRY
         </p>
@@ -14,8 +14,8 @@ export default function BrandCarousel() {
           {brands.map((brand) => (
             <span
               key={brand}
-              className="font-bold text-2xl text-[#00356a]"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
+              className="font-bold text-2xl text-[#00356a] select-none"
+              style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
             >
               {brand}
             </span>

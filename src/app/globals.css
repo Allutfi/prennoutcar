@@ -1,9 +1,9 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap");
+
+/* All @import rules must come before @theme and other rules */
 
 @theme inline {
-  /* Colors */
+  /* ── Colors ── */
   --color-surface: #f9f9ff;
   --color-on-primary: #ffffff;
   --color-secondary: #19619f;
@@ -58,13 +58,13 @@
   --color-surface-navy: #011A35;
   --color-on-secondary-container: #00497f;
 
-  /* Border radius */
+  /* ── Border radius ── */
   --radius-DEFAULT: 0.25rem;
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-full: 9999px;
 
-  /* Spacing */
+  /* ── Spacing ── */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -72,56 +72,22 @@
   --spacing-xl: 32px;
   --spacing-2xl: 48px;
   --spacing-section: 80px;
-
-  /* Font families */
-  --font-headline-lg: "Montserrat", sans-serif;
-  --font-body-md: "Inter", sans-serif;
 }
 
-/* Custom utility classes */
-@layer utilities {
-  .font-headline-lg { font-family: "Montserrat", sans-serif; }
-  .font-body-md { font-family: "Inter", sans-serif; }
-
-  .text-headline-xl {
-    font-size: 3rem;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    font-weight: 700;
-  }
-  .text-headline-lg {
-    font-size: 2rem;
-    line-height: 1.25;
-    font-weight: 700;
-  }
-  .text-body-md {
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 400;
-  }
-  .text-label-caps {
-    font-size: 0.75rem;
-    line-height: 1rem;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-  }
-
-  .glass-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-  }
-
-  .organic-mask {
-    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FF0066' d='M44.7,-76.4C58.2,-69.2,69.7,-57.4,77.3,-43.6C84.8,-29.8,88.5,-14.9,87.3,-0.7C86.1,13.5,80.1,27,71.8,39.3C63.5,51.6,53,62.7,40.4,70.1C27.8,77.5,13.9,81.1,-0.5,81.9C-14.8,82.7,-29.7,80.7,-42.9,73.8C-56,66.8,-67.5,55,-74.6,41.2C-81.8,27.4,-84.6,13.7,-84.3,0.2C-84.1,-13.4,-80.7,-26.8,-73.4,-38.7C-66,-50.7,-54.6,-61.1,-41.8,-68.8C-28.9,-76.5,-14.5,-81.4,0.7,-82.6C15.9,-83.8,31.2,-83.5,44.7,-76.4Z' transform='translate(100 100)' /%3E%3C/svg%3E");
-    mask-size: cover;
-    mask-repeat: no-repeat;
-  }
+/* ── Global base styles ── */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Material Symbols */
+body {
+  background-color: #f9f9ff;
+  color: #191c20;
+}
+
+/* ── Material Symbols Outlined ── */
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  font-family: 'Material Symbols Outlined';
+  font-family: 'Material Symbols Outlined', sans-serif;
   font-style: normal;
   display: inline-block;
   line-height: 1;
@@ -130,14 +96,13 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: #f9f9ff;
-  font-family: "Inter", sans-serif;
-  color: #191c20;
+/* ── Organic blob mask used on promo images ── */
+.organic-mask {
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FF0066' d='M44.7,-76.4C58.2,-69.2,69.7,-57.4,77.3,-43.6C84.8,-29.8,88.5,-14.9,87.3,-0.7C86.1,13.5,80.1,27,71.8,39.3C63.5,51.6,53,62.7,40.4,70.1C27.8,77.5,13.9,81.1,-0.5,81.9C-14.8,82.7,-29.7,80.7,-42.9,73.8C-56,66.8,-67.5,55,-74.6,41.2C-81.8,27.4,-84.6,13.7,-84.3,0.2C-84.1,-13.4,-80.7,-26.8,-73.4,-38.7C-66,-50.7,-54.6,-61.1,-41.8,-68.8C-28.9,-76.5,-14.5,-81.4,0.7,-82.6C15.9,-83.8,31.2,-83.5,44.7,-76.4Z' transform='translate(100 100)'/%3E%3C/svg%3E");
+  mask-size: cover;
+  mask-repeat: no-repeat;
 }
