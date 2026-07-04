@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import RemoteImage from "@/components/RemoteImage";
+import TeamGrid from "@/components/TeamGrid";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,33 +11,6 @@ export const metadata: Metadata = {
   description:
     "For nearly three decades, Prenn Out Car has defined the pinnacle of automotive luxury.",
 };
-
-const teamMembers = [
-  {
-    name: "Julian Sterling",
-    role: "Chief Executive Officer",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBivv-jJidHW0A6qZVSHXKzPAkvkuIRBDgz_04PkvAxfuCCyzy-MLJyn6OiuLNPufoxuSoZOtn9NBWxWYRsnEv2xDKxPZf9XK5hdU6ij2fF9ZFGVrQ02U_C0krMiAfhnEXl7woVpYGI8Xh7qVfcwm_UGubSSsTuHJtvqE3zpHh0SycELJtyvnwznVOfepbjum-qC4ptp-VkQNUHLOIt3-qegtSQuJy6i_4sXtBVlMPv8ESgrpmji5ArPg",
-  },
-  {
-    name: "Elena Vaught",
-    role: "Head of Operations",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuA1Ty7NpWOjICvBGB7lW-6fjVYWoSxzpIuT-tO-Oqx7vKKD5F-VFT7DRX5aBZ9s93WNfRBwm7r0PtWbdLlIjXON5_lCP3jKx4Ua-B2H96nMZv3jkIgDp3bHNAmrHkrTXp1QjSsFkh1KnlR1dG-ha1W8v3F-6FzBicfSgrw1EKma-OiabJ3UoHX-5zUdjdRw0_AzVPGk0sDOCEVJz1nHOidHLrr0bh7dGJJr_PFSmO00bn2JIE0_pzuKFA",
-  },
-  {
-    name: "Marcus Thorne",
-    role: "Global Sales Director",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDvtfnecu7xICzsVLgHngeL6YQOOFO9oQsuJRK-eFQmFC4xQnyMOOQfD9a7g5H0U8G9wME1rRqHNVqEnVb5pOrYQUjDO8ndcv2dNFSiNkuxajfGyjRx-HD78dRSw6Mbxktje158EjZ68vVTdFh2fVEA8PYJiDsSHHs9SkdugFwMPvTpwMlZ9WxTG_MUEJdxQlxHYvUjrmA291XmzHkRp3bQHzyzVNXOnQEN2c0nz0V-Ud97Wo23CR0x2Q",
-  },
-  {
-    name: "Robert Chen",
-    role: "Chief Curator",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBU6GlNwNt4eDBy-_tNx6XxHB0SHQm44P75Gw9V81I8ZhZinUebCvO-RxCN9xVuQrGLC3n0mY9RsHIJ1hKA-XK89jzydbA_6EpigxWYuZVi0oCZMenKdloREd4Npo06wGBUfzrT3CCz5f7ryf7fgiuS78rNDDT1z-NFj7VVw1g7398s_5yPLlX_UynKlfnPvUWuFNL3ohyjWHmuaYQGVyX2_AN0Hk9RI1qA9gqxOBWR1yWUUCmLN7DXOw",
-  },
-];
 
 const galleryImages = [
   {
@@ -108,27 +82,27 @@ export default function AboutPage() {
             <div className="max-w-7xl mx-auto px-6 w-full">
               <div style={{ maxWidth: "48rem" }}>
                 <span
-                  className="text-[#9fcaff] text-[10px] tracking-widest uppercase font-semibold mb-4 block"
+                  className="text-[#9fcaff] text-[10px] tracking-widest uppercase font-semibold mb-4 block animate-fade-in delay-200"
                   style={{ fontFamily: "var(--font-inter), sans-serif" }}
                 >
                   Established 1995
                 </span>
                 <h2
-                  className="text-white font-bold text-4xl md:text-5xl uppercase mb-6 leading-tight"
+                  className="text-white font-bold text-4xl md:text-5xl uppercase mb-6 leading-tight animate-fade-up delay-300"
                   style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
                 >
                   Our Legacy of{" "}
                   <span className="text-[#d2e4ff]">Excellence</span>
                 </h2>
                 <p
-                  className="text-white/80 text-base mb-8 leading-relaxed"
+                  className="text-white/80 text-base mb-8 leading-relaxed animate-fade-up delay-500"
                   style={{ fontFamily: "var(--font-inter), sans-serif", maxWidth: "38rem" }}
                 >
                   For nearly three decades, Prenn Out Car has defined the pinnacle of
                   automotive luxury. We don&apos;t just sell cars; we curate masterpieces of
                   engineering for the world&apos;s most discerning drivers.
                 </p>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 animate-fade-up delay-700">
                   <button
                     className="bg-[#00356a] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#004b93] transition-all"
                     style={{ fontFamily: "var(--font-inter), sans-serif" }}
@@ -151,7 +125,7 @@ export default function AboutPage() {
         <section className="py-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             {/* Image side */}
-            <div className="relative">
+            <div className="relative animate-slide-right delay-0">
               <div className="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl relative z-10">
                 <RemoteImage
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHa4FUnM42kljwco69xYGwuo-HGzzz_2pUIF2XXr_kJLgK92tIQXDxTs_PsxSPdkbTsQraZqAL6qqbJ5Es3HqwuJOO4TdvaqbZ9bFJzzg5u2fV4I8Cf-rpFwGZQ67xDJJ3a8im8jLSsLnfQbDo14pPD42G2nPWIkwoZz5OYP3_wxRHar1ketCXU6N8OTYMQp9tIQHh8GcYWF-YKCPeFnHgYXO3SD60JmworjmyfznFCdzEUuf5JvFBBQ"
@@ -179,7 +153,7 @@ export default function AboutPage() {
             </div>
 
             {/* Text side */}
-            <div className="space-y-6">
+            <div className="space-y-6 animate-slide-left delay-200">
               <h2
                 className="text-[#00356a] font-bold text-3xl md:text-4xl uppercase"
                 style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
@@ -385,33 +359,7 @@ export default function AboutPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {teamMembers.map((member) => (
-                <div key={member.name} className="group">
-                  <div className="aspect-[3/4] rounded-xl overflow-hidden mb-4 relative">
-                    <RemoteImage
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
-                  </div>
-                  <h4
-                    className="text-[#00356a] font-bold text-lg"
-                    style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
-                  >
-                    {member.name}
-                  </h4>
-                  <p
-                    className="text-[#19619f] text-[10px] tracking-widest uppercase font-semibold mt-1"
-                    style={{ fontFamily: "var(--font-inter), sans-serif" }}
-                  >
-                    {member.role}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <TeamGrid />
           </div>
         </section>
 

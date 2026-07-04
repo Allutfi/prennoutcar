@@ -1,4 +1,7 @@
+"use client";
+
 import RemoteImage from "@/components/RemoteImage";
+import { useInView } from "@/hooks/useInView";
 
 const promos = [
   {
@@ -17,18 +20,28 @@ const promos = [
     desc: "Get a competitive cash offer for your vehicle in under 15 minutes. We buy all makes and models.",
     cta: "GET OFFER",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBFUpKouVSwab21F6OIcv8d-G8EsDBcnbYeZGKf8lTsMHrTfZO46ohbuoG_3T8G7FbknxPvNEbxjPPMPZOoR7K64lg-44yclS9ySIv3bFQJUjoefNZBtC4hAnrZ3MOVe-GvGztgseRSztiQO3tjgsHyMmnPe95QkU9c1ISjNfXOU9NZjvrQBtVs7xU2Bh-0nGrHlgUaiEKLvZ7is7AIZgVcEcQBZGPa4YJLH1S0jit2sRy0Ca5VMf_VpUOZAZcgTOuH92h9Pe2jc6w",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBFUpKouVSwab21F6OIcv8d-G8EsDBcnbYeZGKf8lsTsMHrTfZO46ohbuoG_3T8G7FbknxPvNEbxjPPMPZOoR7K64lg-44yclS9ySIv3bFQJUjoefNZBtC4hAnrZ3MOVe-GvGztgseRSztiQO3tjgsHyMmnPe95QkU9c1ISjNfXOU9NZjvrQBtVs7xU2Bh-0nGrHlgUaiEKLvZ7is7AIZgVcEcQBZGPa4YJLH1S0jit2sRy0Ca5VMf_VpUOZAZcgTOuH92h9Pe2jc6w",
     imageAlt: "Modern luxury SUV on a road",
     reverse: true,
   },
 ] as const;
 
 export default function PromoSection() {
+  const [ref, visible] = useInView(0.15);
+
   return (
-    <section className="py-20 px-6 max-w-7xl mx-auto">
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      className="py-20 px-6 max-w-7xl mx-auto"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {promos.map((promo) => (
-          <PromoCard key={promo.badge} promo={promo} />
+        {promos.map((promo, i) => (
+          <div
+            key={promo.badge}
+            className={visible ? (i === 0 ? "animate-slide-right delay-0" : "animate-slide-left delay-200") : "opacity-0"}
+          >
+            <PromoCard promo={promo} />
+          </div>
         ))}
       </div>
     </section>

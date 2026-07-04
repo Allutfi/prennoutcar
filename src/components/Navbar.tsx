@@ -31,17 +31,16 @@ export default function Navbar() {
     >
       <nav className="flex justify-between items-center h-full px-6 max-w-7xl mx-auto">
         {/* Logo */}
-        <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-4">
-            <div className="h-10 w-10 bg-[#00356a] rounded-full flex items-center justify-center text-white font-bold text-xs shrink-0">
-              PA
-            </div>
-            <span
-              className="font-bold text-2xl text-[#00356a] tracking-tight hidden sm:block"
-              style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
-            >
-              PRENN OUT CAR
-            </span>
+        <div className="flex items-center">
+          <Link href="/" className="flex items-center" aria-label="Prenn Out Car – home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt="Prenn Out Car"
+              width={180}
+              height={50}
+              className={`transition-all duration-300 ${scrolled ? "h-9" : "h-11"} w-auto`}
+            />
           </Link>
         </div>
 

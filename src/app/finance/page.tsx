@@ -2,6 +2,7 @@ import UtilityBar from "@/components/UtilityBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FinanceCalculator from "@/components/FinanceCalculator";
+import FinanceSteps from "@/components/FinanceSteps";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -10,30 +11,6 @@ export const metadata: Metadata = {
   description:
     "Secure your dream vehicle with our bespoke financing solutions. Competitive rates, flexible terms, and a seamless digital application process.",
 };
-
-const steps = [
-  {
-    icon: "edit_note",
-    step: "STEP 01",
-    title: "Online Application",
-    description:
-      "Fill out our secure digital form in under 5 minutes. No impact on your initial credit score for pre-approvals.",
-  },
-  {
-    icon: "verified_user",
-    step: "STEP 02",
-    title: "Expert Review",
-    description:
-      "Our finance specialists negotiate with top-tier lenders to find the most competitive rates and terms for you.",
-  },
-  {
-    icon: "key",
-    step: "STEP 03",
-    title: "Fast Approval",
-    description:
-      "Receive your approval within hours, sign digitally, and prepare for delivery of your new Prenn Out Car vehicle.",
-  },
-];
 
 const faqs = [
   {
@@ -115,27 +92,27 @@ export default function FinancePage() {
             <div className="max-w-7xl mx-auto px-6 w-full">
               <div style={{ maxWidth: "42rem" }}>
                 <span
-                  className="text-[#9fcaff] text-[10px] tracking-widest uppercase font-semibold mb-4 block"
+                  className="text-[#9fcaff] text-[10px] tracking-widest uppercase font-semibold mb-4 block animate-fade-in delay-200"
                   style={{ fontFamily: "var(--font-inter), sans-serif" }}
                 >
                   Premium Automotive Finance
                 </span>
                 <h2
-                  className="text-white font-bold text-4xl md:text-5xl uppercase mb-6 leading-tight"
+                  className="text-white font-bold text-4xl md:text-5xl uppercase mb-6 leading-tight animate-fade-up delay-300"
                   style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
                 >
                   Drive Your Dream,{" "}
                   <span className="text-[#7fbafe]">On Your Terms</span>
                 </h2>
                 <p
-                  className="text-white/80 text-base mb-8 leading-relaxed"
+                  className="text-white/80 text-base mb-8 leading-relaxed animate-fade-up delay-500"
                   style={{ fontFamily: "var(--font-inter), sans-serif" }}
                 >
                   Secure your dream vehicle with our bespoke financing solutions.
                   Competitive rates, flexible terms, and a seamless digital
                   application process tailored for the modern driver.
                 </p>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 animate-fade-up delay-700">
                   <a
                     href="#apply"
                     className="bg-[#00356a] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#004b93] transition-all"
@@ -174,38 +151,7 @@ export default function FinancePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {steps.map((s) => (
-                <div
-                  key={s.step}
-                  className="bg-white p-8 rounded-xl border border-[#E2E8F0] shadow-sm group hover:border-[#00356a] transition-all"
-                >
-                  <div className="w-16 h-16 bg-[#F4F6F9] rounded-full flex items-center justify-center mb-6 group-hover:bg-[#004b93]/10 transition-all">
-                    <span className="material-symbols-outlined text-[#00356a] text-3xl">
-                      {s.icon}
-                    </span>
-                  </div>
-                  <span
-                    className="text-[#00356a] font-bold text-[10px] tracking-widest uppercase"
-                    style={{ fontFamily: "var(--font-inter), sans-serif" }}
-                  >
-                    {s.step}
-                  </span>
-                  <h3
-                    className="text-[#0A192F] font-bold text-xl mt-2 mb-3"
-                    style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
-                  >
-                    {s.title}
-                  </h3>
-                  <p
-                    className="text-[#5E6E82] text-sm leading-relaxed"
-                    style={{ fontFamily: "var(--font-inter), sans-serif" }}
-                  >
-                    {s.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <FinanceSteps />
           </div>
         </section>
 

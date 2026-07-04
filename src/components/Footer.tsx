@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const quickLinks = [
   "Search Inventory",
   "Special Offers",
@@ -22,17 +24,16 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-20">
         {/* Brand column */}
         <div className="space-y-6">
-          <div className="flex items-center gap-4">
-            <div className="h-10 w-10 bg-white/10 rounded-full flex items-center justify-center text-white font-bold text-xs">
-              PA
-            </div>
-            <span
-              className="font-bold text-lg"
-              style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
-            >
-              PRENN
-            </span>
-          </div>
+          <Link href="/" aria-label="Prenn Out Car – home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-light.svg"
+              alt="Prenn Out Car"
+              width={160}
+              height={45}
+              className="h-10 w-auto"
+            />
+          </Link>
           <p
             className="text-white/60 text-sm leading-relaxed"
             style={{ fontFamily: "var(--font-inter), sans-serif" }}

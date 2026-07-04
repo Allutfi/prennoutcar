@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import RemoteImage from "@/components/RemoteImage";
+import { useInView } from "@/hooks/useInView";
 
 const inventory = [
   {
@@ -72,8 +73,12 @@ const searchFields = [
   { label: "MAX PRICE", options: ["Any Price", "$20,000", "$40,000", "$60,000+"] },
 ];
 
+const cardDelays = ["delay-0", "delay-100", "delay-200", "delay-300"] as const;
+
 export default function InventorySection() {
   const [activeFilter, setActiveFilter] = useState<Filter>("all");
+  const [headerRef, headerVisible] = useInView(0.2);
+  const [gridRef, gridVisible] = useInView(0.1);
 
   const filtered = inventory.filter(
     (car) => activeFilter === "all" || car.category === activeFilter
@@ -81,8 +86,8 @@ export default function InventorySection() {
 
   return (
     <section>
-      {/* Search bar — attached to top of this section, no overlap */}
-      <div className="bg-[#011A35] py-6 px-6">
+      {/* Search bar */}
+      <div className="bg-[#011A35] py-6 px-6 animate-fade-in delay-0">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             {searchFields.map((field) => (
@@ -114,61 +119,76 @@ export default function InventorySection() {
           </div>
         </div>
       </div>
+
       {/* Inventory content */}
       <div className="max-w-7xl mx-auto px-6 py-20">
-      {/* Section header */}
-      <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-8">
-        <div className="space-y-2">
-          <span
-            className="block text-[#19619f] text-[10px] tracking-widest uppercase font-semibold"
-            style={{ fontFamily: "var(--font-inter), sans-serif" }}
-          >
-            PREMIUM COLLECTION
-          </span>
-          <h2
-            className="text-[#00356a] uppercase font-bold text-4xl leading-tight"
-            style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
-          >
-            SHOP OUR INVENTORY
-          </h2>
-        </div>
 
-        {/* Filter tabs */}
-        <div className="flex flex-wrap border-b border-[#c2c6d2]">
-          {filterTabs.map((tab) => (
-            <button
-              key={tab.filter}
-              onClick={() => setActiveFilter(tab.filter)}
-              className={`px-4 py-2 text-[10px] tracking-widest uppercase font-semibold transition-colors pb-2 ${
-                activeFilter === tab.filter
-                  ? "text-[#00356a] border-b-2 border-[#00356a]"
-                  : "text-[#5E6E82] hover:text-[#00356a]"
-              }`}
+        {/* Section header */}
+        <div
+          ref={headerRef as React.RefObject<HTMLDivElement>}
+          className={`flex flex-col md:flex-row justify-between items-end gap-4 mb-8 ${
+            headerVisible ? "animate-fade-up delay-0" : "opacity-0"
+          }`}
+        >
+          <div className="space-y-2">
+            <span
+              className="block text-[#19619f] text-[10px] tracking-widest uppercase font-semibold"
               style={{ fontFamily: "var(--font-inter), sans-serif" }}
             >
-              {tab.label}
-            </button>
+              PREMIUM COLLECTION
+            </span>
+            <h2
+              className="text-[#00356a] uppercase font-bold text-4xl leading-tight"
+              style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
+            >
+              SHOP OUR INVENTORY
+            </h2>
+          </div>
+
+          {/* Filter tabs */}
+          <div className="flex flex-wrap border-b border-[#c2c6d2]">
+            {filterTabs.map((tab) => (
+              <button
+                key={tab.filter}
+                onClick={() => setActiveFilter(tab.filter)}
+                className={`px-4 py-2 text-[10px] tracking-widest uppercase font-semibold transition-colors pb-2 ${
+                  activeFilter === tab.filter
+                    ? "text-[#00356a] border-b-2 border-[#00356a]"
+                    : "text-[#5E6E82] hover:text-[#00356a]"
+                }`}
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Inventory grid */}
+        <div
+          ref={gridRef as React.RefObject<HTMLDivElement>}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {filtered.map((car, i) => (
+            <div
+              key={car.id}
+              className={gridVisible ? `animate-fade-up ${cardDelays[i % cardDelays.length]}` : "opacity-0"}
+            >
+              <CarCard car={car} />
+            </div>
           ))}
         </div>
-      </div>
 
-      {/* Inventory grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {filtered.map((car) => (
-          <CarCard key={car.id} car={car} />
-        ))}
+        {/* CTA */}
+        <div className="mt-8 text-center">
+          <button
+            className="bg-[#00356a] text-white text-[10px] tracking-widest uppercase font-semibold px-12 py-4 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:bg-[#004b93] transition-all duration-300"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
+          >
+            EXPLORE FULL INVENTORY
+          </button>
+        </div>
       </div>
-
-      {/* CTA */}
-      <div className="mt-8 text-center">
-        <button
-          className="bg-[#00356a] text-white text-[10px] tracking-widest uppercase font-semibold px-12 py-4 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all"
-          style={{ fontFamily: "var(--font-inter), sans-serif" }}
-        >
-          EXPLORE FULL INVENTORY
-        </button>
-      </div>
-      </div> {/* /Inventory content */}
     </section>
   );
 }
@@ -177,7 +197,7 @@ type Car = (typeof inventory)[number];
 
 function CarCard({ car }: { car: Car }) {
   return (
-    <article className="group bg-white border border-[#E2E8F0] rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300">
+    <article className="group bg-white border border-[#E2E8F0] rounded-xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
       {/* Image */}
       <div className="relative overflow-hidden aspect-[3/2]">
         <RemoteImage
@@ -198,7 +218,7 @@ function CarCard({ car }: { car: Car }) {
       </div>
 
       {/* Details */}
-      <div className="p-6 space-y-4">
+      <div className="p-6 space-y-4 flex flex-col flex-grow">
         <div>
           <p
             className="text-[#5E6E82] text-[10px] tracking-widest uppercase font-semibold"
@@ -214,7 +234,7 @@ function CarCard({ car }: { car: Car }) {
           </h3>
         </div>
 
-        <div className="flex justify-between items-center border-t border-[#E2E8F0] pt-4">
+        <div className="flex justify-between items-center border-t border-[#E2E8F0] pt-4 mt-auto">
           <span
             className="font-bold text-2xl text-[#00356a]"
             style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
@@ -228,7 +248,7 @@ function CarCard({ car }: { car: Car }) {
         </div>
 
         <button
-          className="w-full border border-[#00356a] text-[#00356a] text-[10px] tracking-widest uppercase font-semibold py-2 rounded-lg group-hover:bg-[#00356a] group-hover:text-white transition-all"
+          className="w-full border border-[#00356a] text-[#00356a] text-[10px] tracking-widest uppercase font-semibold py-2 rounded-lg group-hover:bg-[#00356a] group-hover:text-white transition-all duration-300"
           style={{ fontFamily: "var(--font-inter), sans-serif" }}
         >
           VIEW DETAILS

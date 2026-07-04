@@ -1,3 +1,7 @@
+"use client";
+
+import { useInView } from "@/hooks/useInView";
+
 const values = [
   {
     icon: "verified",
@@ -21,17 +25,26 @@ const values = [
   },
 ];
 
+const delays = ["delay-0", "delay-150", "delay-300", "delay-500"] as const;
+
 export default function ValueBanner() {
+  const [ref, visible] = useInView(0.2);
+
   return (
-    <section className="bg-[#011A35] py-20 text-white">
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      className="bg-[#011A35] py-20 text-white"
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((item) => (
+          {values.map((item, i) => (
             <div
               key={item.title}
-              className="flex flex-col items-center text-center space-y-4 group"
+              className={`flex flex-col items-center text-center space-y-4 group ${
+                visible ? `animate-fade-up ${delays[i]}` : "opacity-0"
+              }`}
             >
-              <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#004b93] transition-colors duration-300">
+              <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#004b93] group-hover:scale-110 transition-all duration-300">
                 <span
                   className="material-symbols-outlined text-3xl"
                   style={{ fontVariationSettings: "'FILL' 1" }}

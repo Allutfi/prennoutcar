@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56" fill="none" aria-label="Prenn Out Car logo">
+  <!-- Shield / badge background -->
+  <rect x="0" y="4" width="48" height="48" rx="8" fill="#ffffff" opacity="0.12"/>
+
+  <!-- Car silhouette (side view) -->
+  <!-- Body -->
+  <path d="M8 34 L10 26 C10 24 11.5 22 13 22 L20 22 L26 16 C27 15 28.5 14 30 14 L37 14 C38.5 14 40 15 41 16 L44 20 L39 20 L39 34 Z" fill="#ffffff" opacity="0.95"/>
+  <!-- Roof/cabin cutout (window area) -->
+  <path d="M15 22 L19 18 C19.5 17.2 20.5 17 21.5 17 L35 17 C36 17 36.8 17.5 37.5 18 L39.5 20 L14 20 Z" fill="#011A35"/>
+  <!-- Wheels -->
+  <circle cx="16" cy="34" r="5" fill="#ffffff"/>
+  <circle cx="16" cy="34" r="2.5" fill="#011A35"/>
+  <circle cx="34" cy="34" r="5" fill="#ffffff"/>
+  <circle cx="34" cy="34" r="2.5" fill="#011A35"/>
+  <!-- Road line -->
+  <rect x="6" y="39" width="36" height="2" rx="1" fill="#ffffff" opacity="0.35"/>
+  <!-- Speed line accents -->
+  <rect x="6" y="28" width="5" height="1.5" rx="0.75" fill="#ffffff" opacity="0.45"/>
+  <rect x="6" y="31" width="3" height="1.5" rx="0.75" fill="#ffffff" opacity="0.3"/>
+
+  <!-- Brand wordmark -->
+  <text
+    x="56"
+    y="26"
+    font-family="Montserrat, 'Arial Black', sans-serif"
+    font-weight="800"
+    font-size="16"
+    letter-spacing="1"
+    fill="#ffffff"
+  >PRENN OUT</text>
+  <text
+    x="56"
+    y="44"
+    font-family="Montserrat, 'Arial Black', sans-serif"
+    font-weight="700"
+    font-size="13"
+    letter-spacing="3"
+    fill="#7fbafe"
+  >C A R</text>
+
+  <!-- Accent rule between lines -->
+  <rect x="56" y="29" width="130" height="1.5" rx="0.75" fill="#ffffff" opacity="0.15"/>
+</svg>

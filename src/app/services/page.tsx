@@ -1,6 +1,7 @@
 import UtilityBar from "@/components/UtilityBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ServiceCards from "@/components/ServiceCards";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -9,37 +10,6 @@ export const metadata: Metadata = {
   description:
     "Maintain peak performance and preserve the value of your luxury vehicle with our factory-certified technicians and genuine OEM components.",
 };
-
-const serviceMenu = [
-  {
-    icon: "oil_barrel",
-    title: "Synthetic Oil Change",
-    description:
-      "Premium synthetic fluids and OEM filters designed to maximize engine longevity and thermal efficiency.",
-    price: "From $129.99",
-  },
-  {
-    icon: "settings_input_component",
-    title: "Brake System",
-    description:
-      "Full inspection of rotors, pads, and hydraulic lines. Precision calibration for responsive stopping power.",
-    price: "Inquiry Only",
-  },
-  {
-    icon: "tire_repair",
-    title: "Tire Service",
-    description:
-      "Precision balancing and rotation to ensure even wear patterns and optimal road handling dynamics.",
-    price: "From $59.99",
-  },
-  {
-    icon: "biotech",
-    title: "Diagnostics",
-    description:
-      "Advanced computer analysis utilizing the latest manufacturer software to identify and rectify fault codes.",
-    price: "Complimentary",
-  },
-];
 
 const standards = [
   {
@@ -134,19 +104,19 @@ export default function ServicesPage() {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center px-6 w-full" style={{ maxWidth: "56rem" }}>
               <span
-                className="inline-block bg-[#7fbafe]/20 text-[#9fcaff] px-6 py-1 rounded-full text-[10px] tracking-widest uppercase font-semibold mb-6 border border-[#9fcaff]/30 backdrop-blur-sm"
+                className="inline-block bg-[#7fbafe]/20 text-[#9fcaff] px-6 py-1 rounded-full text-[10px] tracking-widest uppercase font-semibold mb-6 border border-[#9fcaff]/30 backdrop-blur-sm animate-fade-in delay-200"
                 style={{ fontFamily: "var(--font-inter), sans-serif" }}
               >
                 Premium Automotive Care
               </span>
               <h2
-                className="text-white font-bold text-4xl md:text-5xl uppercase mb-6 leading-tight"
+                className="text-white font-bold text-4xl md:text-5xl uppercase mb-6 leading-tight animate-fade-up delay-300"
                 style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
               >
                 Expert Care for Your Luxury Vehicle
               </h2>
               <p
-                className="text-white/80 text-base mb-10 leading-relaxed mx-auto"
+                className="text-white/80 text-base mb-10 leading-relaxed mx-auto animate-fade-up delay-500"
                 style={{
                   fontFamily: "var(--font-inter), sans-serif",
                   maxWidth: "40rem",
@@ -156,7 +126,7 @@ export default function ServicesPage() {
                 masterpiece with our factory-certified technicians and genuine
                 OEM components.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-700">
                 <a
                   href="#schedule"
                   className="bg-[#00356a] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#004b93] transition-all flex items-center justify-center gap-2"
@@ -192,49 +162,7 @@ export default function ServicesPage() {
               <div className="w-20 h-1.5 bg-[#00356a] rounded-full" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {serviceMenu.map((service) => (
-                <div
-                  key={service.title}
-                  className="bg-white p-6 rounded-xl border border-[#E2E8F0] flex flex-col gap-4 transition-all hover:shadow-lg hover:-translate-y-1 hover:border-[#004b93] group"
-                >
-                  <div className="w-12 h-12 bg-[#ededf4] flex items-center justify-center rounded-lg text-[#00356a] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:text-[#004b93]">
-                    <span className="material-symbols-outlined text-3xl">
-                      {service.icon}
-                    </span>
-                  </div>
-                  <h3
-                    className="text-[#00356a] font-bold text-lg"
-                    style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p
-                    className="text-[#424751] text-sm leading-relaxed flex-grow"
-                    style={{ fontFamily: "var(--font-inter), sans-serif" }}
-                  >
-                    {service.description}
-                  </p>
-                  <div className="pt-4 border-t border-[#E2E8F0] flex justify-between items-center">
-                    <span
-                      className="text-[#00356a] font-bold text-sm"
-                      style={{ fontFamily: "var(--font-inter), sans-serif" }}
-                    >
-                      {service.price}
-                    </span>
-                    <button
-                      className="text-[#19619f] font-semibold flex items-center gap-1 text-xs tracking-widest uppercase hover:text-[#00356a] transition-colors"
-                      style={{ fontFamily: "var(--font-inter), sans-serif" }}
-                    >
-                      DETAILS
-                      <span className="material-symbols-outlined text-[16px]">
-                        chevron_right
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ServiceCards />
           </div>
         </section>
 
